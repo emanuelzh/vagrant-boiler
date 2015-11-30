@@ -41,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   #config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=777"], owner: "vagrant", group: "www-data"
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ['nfsvers=4']
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", :mount_options => ['nfsvers=3']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -59,8 +59,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
   # Configure A Few VirtualBox Settings
     config.vm.provider "virtualbox" do |vb|
-      vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
-      vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      vb.customize ["modifyvm", :id, "--cpus", "1"]
       vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
